@@ -1,0 +1,100 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.contenu {
+    margin-left: 20px;
+}
+.debut{
+    display: flex;
+    justify-content: space-between;
+}
+.donnee{
+    margin-bottom: 20px;
+    width: 100%;
+}
+.donnee input {
+    width: 55%;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid #A8E0F9;
+    outline-color: #A8E0F9;
+    padding: 5px;
+    padding-left: 40px;
+    color: #A8E0F9;
+    font-size: 14px;
+}
+::placeholder{
+    color: #A8E0F9;
+    font-size: 12px;
+}
+.donnee textarea{
+    width: 55%;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid #A8E0F9;
+    padding: 5px;
+    margin-bottom: 20px;
+    padding-left: 15px;
+    color: #A8E0F9;
+}
+
+.contact{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    width: 55%;
+    justify-content: space-between;
+}
+
+        
+.reseau{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.RS img{
+    width: 30px;
+}
+
+.icon{
+    position: absolute;
+    left: 10px;
+    top: 25px;
+}
+
+.formulaire{
+    display: flex;
+    position: relative;
+}
+
+@media screen and (max-width: 767px){
+    .contenu {
+        margin-left: 0px;
+    }
+
+    .donnee input {
+        width: 70%;
+        margin-top: 20px;
+        border-radius: 10px;
+        border: 1px solid #A8E0F9;
+        outline-color: #A8E0F9;
+        padding: 5px;
+        padding-left: 40px;
+        color: #A8E0F9;
+        font-size: 14px;
+    }
+
+    .donnee textarea{
+        width: 70%;
+        margin-top: 20px;
+        border-radius: 10px;
+        border: 1px solid #A8E0F9;
+        padding: 10px;
+        margin-bottom: 20px;
+        padding-left: 15px;
+        color: #A8E0F9;
+    }
+}

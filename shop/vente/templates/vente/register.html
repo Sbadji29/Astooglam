@@ -1,0 +1,49 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'register.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <title>Inscription</title>
+    <link rel="shortcut icon" href="{% static 'logo1.jpg'%}" type="image/x-icon">
+    <meta name="description" content="">
+</head>
+<body>
+    <div class="logo-text">
+        <img src="{% static 'logo2.png'%}" alt="">
+        <span>Inscrivez-vous</span>
+    </div>
+    <form action="">
+        <div class="prenom-container">
+            <input type="text" id="prenom" placeholder="Prenom">
+        </div>
+        <div class="nom-container">
+            <input type="text" id="nom" placeholder="Nom">
+        </div>
+        <div class="telephone-container">
+            <input type="text" id="telephone" placeholder="Telephone">
+        </div>
+        <div class="email-container">
+            <img src="{% static 'mail.png'%}" alt="">
+            <input type="text" id="email" placeholder="Adresse Email">
+        </div>
+        <div class="password-container">
+            <img src="{% static 'lock.png'%}" id="lock" alt="">
+            <img src="{% static 'hide.png'%}" id="status" alt="">
+            <input type="password" id="password"  placeholder="Mot de passe">
+        </div>
+        <div class="checkbox-container">
+            <input type="checkbox" name="checkbox" id="checkbox">
+            <label for="checkbox">J'ai lu la <a href="{% url 'politique_confidentialite' %}" target="_blank">politique de confidentialité</a> et j'accepte  les <a target="_blank" href="{% url 'condition_utilisation' %}">conditions d'utilisation</a></label>
+        </div>
+        <div class="button-container">
+            <input type="submit" value="S'inscrire" id="submit">
+        </div>
+        <p class="already_logged">Déja inscrit ? <a href="{% url 'connexion' %}">Connectez-vous</a></p>
+    </form>
+    <script src="Js/register.js"></script>
+
+</body>
+</html>

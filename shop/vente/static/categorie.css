@@ -1,0 +1,152 @@
+body .contenu{
+    width: 100%;
+    background-image: url("/static/deco.jpg");   
+}
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 60px; 
+    align-items: flex-start;
+}
+
+.square-container {
+    width: 100px; 
+    height: 100px;
+    position: relative; 
+    border: 1px solid white;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+
+
+.square-image {
+    width: 100px; 
+    height: 100px; 
+    object-fit: cover; 
+}
+
+.image-title {
+    margin-top: 10px;
+}
+
+
+.tete{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.cat{
+    margin-bottom: 100px;
+}
+
+.ajout_panier{
+    display: flex;
+    justify-content: space-between;
+}
+
+.entete_cat{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
+
+.tete button{
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    background-color: #75964F;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px;
+}
+
+
+
+.plus{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.ajout{
+    padding-top: 10px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.prix{
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.date{
+    font-size: 12px;
+}
+
+.icon{
+    width: 20px;
+}
+
+.modif{
+    position: absolute;
+    left: 50px;
+    top: 5px;
+}
+
+@media screen and (max-width: 767px) {
+    .tete button{
+        width: 100px;
+        border-radius: 5px;
+        background-color: #75964F;
+        color: #fff;
+        border: none;
+        font-size: 12px;
+    }
+
+    .plus{
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .ajout{
+        padding-top: 10px;
+        font-size: 10px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .contenu {
+        margin-left: 0px;
+    }
+
+    .entete_cat{
+        display: flex;
+        justify-content: space-between;
+        margin-left: 10px;
+        margin-right: 50px;
+    }
+  }
+  

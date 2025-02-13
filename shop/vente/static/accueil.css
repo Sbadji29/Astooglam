@@ -1,0 +1,271 @@
+.gauche{
+    width: 20%;
+    border: 1px solid black;
+    padding: 20px;
+    gap: 20px;
+}
+
+.droite{
+    width: 80%;
+    margin-left: 10px;
+}
+
+.align_bas{
+    display: flex;
+}
+
+.bas_image{
+    width: 80%;
+}
+
+.cat_pub{
+    display: flex;
+}
+
+.pub{
+    border: solid 1px #000000;
+}
+
+.bas_image img{
+    width: 130px;
+    height: 115px;
+}
+
+.pub-slider{
+    min-width: 100%;
+    margin: 30px 0;
+}
+
+.pub-bloc{
+    display: inline-block;
+    position: relative;
+    width: 330px;
+    height: 150px;
+    background-image: url("/static/blue.jpg");
+    border-radius: 30px;
+    margin-left: 30px;
+}
+.left-bloc{
+    width: 320px;
+    height: 120px;
+    position: absolute;
+    top: 20px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.welcome{
+    color: black;
+    font-size: 16px;
+}
+.welcome-text{
+    font-size: 13px;
+    width: 50%;
+    color: black;
+
+}
+.reserver{
+    width: 100px;
+    padding: 10px 10px;
+    color: white;
+    border-radius: 20px;
+    color: #407BFF;
+    background-color: white;
+    border: none;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+}
+.pub-image{
+    position: absolute;
+    width: 40%;
+    height: 40%;
+    right: 13px;
+    bottom: 5px;
+    border-radius: 25px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 60px; 
+    align-items: flex-start;
+}
+
+.square-container {
+    width: 100px; 
+    height: 100px;
+    position: relative; 
+    border: 1px solid white;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+
+
+.square-image {
+    width: 100px; 
+    height: 100px; 
+    object-fit: cover; 
+}
+
+.image-title {
+    margin-top: 10px;
+}
+
+
+.tete{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.cat{
+    margin-bottom: 100px;
+}
+
+.ajout_panier{
+    display: flex;
+    justify-content: space-between;
+}
+
+.entete_cat{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
+.nom_cat{
+    color: white;
+    font-weight: bold;
+}
+
+
+.tete button{
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    background-color: #75964F;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px;
+}
+
+
+
+.plus{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.ajout{
+    padding-top: 10px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.prix{
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.date{
+    font-size: 12px;
+}
+
+.icon{
+    width: 20px;
+}
+
+.modif{
+    position: absolute;
+    left: 50px;
+    top: 5px;
+}
+
+.bonne_affaire{
+    background-image: url("/static/blue.jpg");
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.cart-item {
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center;
+    border-top: 1px solid #ddd;
+    padding: 20px 0;
+    gap: 15px;
+}
+
+.cart-item a{
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+}
+
+.cart-item-categorie{
+    display: flex;
+    flex-wrap: wrap; 
+    align-items: center;
+    border-top: 1px solid #ddd;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    background-color: #A8E0F9;
+    padding: 5px;
+}
+
+.cart-item:first-child {
+    border-top: none;
+}
+
+@media screen and (max-width: 767px){
+    .droite{
+        width: 100%;
+    }
+
+    .gauche{
+        /* width: 40%;
+        font-size: 10px; */
+        display: none;
+    }
+
+    .plus{
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .ajout{
+        padding-top: 10px;
+        font-size: 10px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .contenu {
+        margin-left: 0px;
+    }
+
+    .entete_cat{
+        display: flex;
+        justify-content: space-between;
+        margin-left: 10px;
+        margin-right: 50px;
+    }
+}

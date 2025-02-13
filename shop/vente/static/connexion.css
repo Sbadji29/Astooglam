@@ -1,0 +1,102 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    background-color: #F9F9F9;
+    font-family: 'Lato', sans-serif;
+}
+.image-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:10px 50px;
+
+}
+#connect{
+    height: 190px;
+}
+span{
+    margin:25px 0;
+    font-size: 40px;
+}
+input{
+    display: flex;
+    width: 654px;
+    height: 50px;
+    padding-bottom: 10px;
+    border-radius:10px;
+    border: 1px solid #A8E0F9;
+    box-sizing: border-box;
+    outline: none;
+}
+#compte,#pwd{
+    background: #f8f8f8;
+    margin-bottom:20px;
+    padding-left:50px;
+}
+.mail{
+    position: relative;
+}
+#image1{
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
+.mots{
+    position: relative;
+}
+#image2{
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+#compte{
+    padding-top: 10px;
+}
+#pwd{
+    padding-top: 10px;
+}
+#image3{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+#submit{
+    display: flex;
+    background: #A8E0F9;
+    justify-content: center;
+    margin-top: 70px;
+    color: white;
+    padding-top: 12px;
+}
+p{
+    text-align: center;
+}
+a{
+    text-decoration: none;
+}
+@media screen and (max-width: 660px){
+    input{
+        width: 354px;
+    }
+    
+} 
+@media screen and (max-width: 398px){
+    input{
+        width:254px ;
+    }
+    span{
+        font-size: 30px;
+    }
+}
+@media screen and (max-width: 1054px){
+    #submit{
+        margin-top: 50px;
+    }
+    .image-text{
+        margin: 0 50px;
+    }
+}
+

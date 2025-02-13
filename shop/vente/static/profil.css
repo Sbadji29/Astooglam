@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+}
+
+.account-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    flex: 1;
+    min-width: 300px;
+    padding: 15px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.edit-icon {
+    font-size: 14px;
+    color: #f90;
+    cursor: pointer;
+    float: right;
+}
+
+@media (max-width: 600px) {
+    .account-section {
+        flex-direction: column;
+    }
+
+    .card {
+        min-width: 100%;
+    }
+}

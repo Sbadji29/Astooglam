@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Felipa&display=swap');
+
+body{
+    background-image: url("/static/deco.jpg");
+}
+
+.tete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.propos{
+    background-color: white;
+}
+
+.contact{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    width: 55%;
+    justify-content: space-between;
+}
+
+        
+.reseau{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.RS img{
+    width: 30px;
+}
+
+.astoo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.astoo img{
+    width: 200px;
+}
+
+.les_propos{
+    margin: 20px;
+    font-family: "Felipa", serif;
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@media screen and (max-width: 767px) {
+    .astoo img{
+        width: 100px;
+    }
+}

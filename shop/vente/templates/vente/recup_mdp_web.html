@@ -1,0 +1,37 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'recup_mdp_web.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <title>MotDePasse</title>
+    <link rel="shortcut icon" href="{% static 'logo1.jpg'%}" type="image/x-icon">
+    <meta name="description" content="description">
+</head>
+<body>
+    <div class="logo-text">
+        <img src="{% static 'logo2.png'%}" alt="">
+        <h1>Mot de Passe Oublié</h1>
+        <p class="para">
+            Entrez votre adresse mail 
+            associé à votre compte et nous 
+            allons vous envoyer un lien 
+            pour modifier votre mot de passe
+        </p> 
+    </div>
+    <form action="#">
+        <div class="email-container">
+            <img src="../Icons/mail.png" alt="">
+            <input type="text" id="email" placeholder="Adresse Email">
+        </div>
+        <div class="button-container">
+            <input type="submit" value="Récupérer mon mot de passe" id="submit">
+        </div>
+        <div class="question">
+            <p>Pas encore inscrit ? <a href="{% url 'register' %}">Inscrivez-vous</a></p> 
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{%static 'connexion.css'%}">
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+        <title>Connexion</title>
+        <link rel="shortcut icon" href="{% static 'logo1.jpg'%}" type="image/x-icon">
+    <meta name="description" content="Astooglam">
+    </head>
+    <body>
+        <br> <br>
+        <div class="image-text">
+            <img src="{% static 'logo2.png'%}" alt="" id="connect">
+            <span><b>Connectez-Vous</b></span>
+        </div>
+        <form method="" action="{% url '' %}">
+            <div class="mail-password">
+                <div class="mail">
+                    <img src="{% static 'mail.png'%}"  id="image1" alt="">
+                    <input type="email" id="compte" name="email1" placeholder="Adresse Email">
+                </div>
+                <div class="mots">
+                    <img src="{% static 'lock.png'%}" id="image2" alt="">
+                    <img src="{% static 'hide.png'%}" id="image3" alt="">
+                    <input type="password" id="pwd" name="pwd" placeholder="Mots de passe">
+                </div>
+            </div>
+            <a href="{% url 'recup_mdp_web' %}">Mots de passe oublié</a>
+            <div class="Sign">
+                <input type="submit" id="submit" name="envoie"  value="Connexion"> 
+            </div>
+            <div class="texte">
+                <p>Pas encore inscrit? <a href="{% url 'register' %}">Inscrivez-vous</a></p>
+            </div>
+        </form>
+        <script src="Js/Connexion.js"></script>
+    </body>
+</html>

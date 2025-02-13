@@ -1,0 +1,229 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{%static 'base.css'%}">
+    <link rel="shortcut icon" href="{% static 'logo1.jpg'%}" type="image/x-icon">
+    <title>Categorie</title>
+    <link rel="stylesheet" href="{%static 'categorie.css'%}">
+</head>
+<body>
+    <nav class="large-screen-nav">
+        <div class="left-ls-nav">
+            <img src="{% static 'logo1.jpg'%}" alt="">
+            <div class="ls-nav-links-container">
+                <a href="{% url '' %}">Accueil</a>
+                <a class="active" href="{% url 'boutique' %}">Boutique</a>
+                <a href="{% url 'services' %}">Services</a>
+                <a href="{% url 'apropos' %}">A-Propos</a>
+                <a href="{% url 'contact' %}">Contact</a>
+            </div>
+        </div>
+        <div class="right-ls-nav">
+            <form action="#" class="ls-nav-search-form">
+                <img class="sr-icon-ls-nav" src="{% static 'search.png'%}" alt="">
+                <input type="text" name="sr-input-ls-nav" id="sr-input-ls-nav" placeholder="Rechercher">
+                <button class="sr-btn-ls-nav"><img src="{% static 'search.png'%}" alt=""></button>
+            </form>
+            <div class="ls-nav-panier-user">
+                <a href="{% url 'panier' %}">
+                    <span>5</span>
+                    <img src="{% static 'panier.png'%}" alt="">
+                </a>
+                <a href="{% url 'profil' %}">
+                    <div class="user-container"></div>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <nav class="mobile-screen-nav">
+        <img id="open-mobile" class="hamburger-image" src="{% static 'menu.png'%}" alt="">
+        <div class="ls-nav-panier-user">
+            <a href="{% url 'panier' %}">
+                <span>5</span>
+                <img src="{% static 'panier.png'%}" alt="">
+            </a>
+            <a href="{% url 'profil' %}">
+                <div class="user-container"></div>
+            </a>
+        </div>
+    </nav>
+    <div id="mobile-nav">
+        <div class="mobile-header">
+            <img class="logo-mobile" src="{% static 'logo1.png'%}" alt="">
+            <img id="close-mobile" src="{% static 'close.png'%}" alt="">
+        </div>
+        <div class="mobile-nav-links-container">
+            <a href="{% url '' %}">Accueil</a>
+            <a class="active" href="{% url 'boutique' %}">Boutique</a>
+            <a href="{% url 'services' %}">Services</a>
+            <a href="{% url 'apropos' %}">A-Propos</a>
+            <a href="{% url 'contact' %}">Contact</a>
+        </div>
+    </div>
+    <form action="#" class="mobile-nav-search-form">
+        <img class="sr-icon-mobile-nav" src="{% static 'search.png'%}" alt="">
+        <input type="text" name="sr-input-ls-nav" id="sr-input-mobile-nav" placeholder="Rechercher">
+        <button class="sr-btn-mobile-nav"><img src="{% static 'search.png'%}" alt=""></button>
+    </form>
+    <div class="contenu">
+        <div class="cat">
+            <div class="entete_cat">
+                <div class="nom_cat">Sac</div>
+            </div>
+            <div class="container">
+                <div class="square-container" id="imageContainer1" onclick="toggleSelection('imageContainer1')">
+                    <div class="formulaire">
+                        <div class="modif">
+                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
+                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
+                        </div>
+                        <img class="square-image" src="../assets/sac1.jpg" alt="Placeholder Image">
+                    </div>
+                    <div class="image-title">
+                        <div class="fruit">Sac1</div>
+                        <div class="ajout_panier">
+                            <div class="prix">15000 Fcfa</div>
+                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="square-container" id="imageContainer2" onclick="toggleSelection('imageContainer2')">
+                    <div class="formulaire">
+                        <div class="modif">
+                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
+                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
+                        </div>
+                        <img class="square-image" src="../assets/sac2.jpg" alt="Placeholder Image">
+                    </div>
+                    <div class="image-title">
+                        <div class="fruit">Sac2</div>
+                        <div class="ajout_panier">
+                            <div class="prix">10000 Fcfa</div>
+                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="square-container" id="imageContainer3" onclick="toggleSelection('imageContainer3')">
+                    <div class="formulaire">
+                        <div class="modif">
+                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
+                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
+                        </div>
+                        <img class="square-image" src="../assets/sac3.jpg" alt="Placeholder Image">
+                    </div>
+                    <div class="image-title">
+                        <div class="fruit">Sac3</div>
+                        <div class="ajout_panier">
+                            <div class="prix">20000 Fcfa</div>
+                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="square-container" id="imageContainer4" onclick="toggleSelection('imageContainer4')">
+                    <div class="formulaire">
+                        <div class="modif">
+                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
+                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
+                        </div>
+                        <img class="square-image" src="../assets/sac4.jpg" alt="Placeholder Image">
+                    </div>
+                    <div class="image-title">
+                        <div class="fruit">Sac4</div>
+                        <div class="ajout_panier">
+                            <div class="prix">12000 Fcfa</div>
+                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="square-container" id="imageContainer5" onclick="toggleSelection('imageContainer5')">
+                    <div class="formulaire">
+                        <div class="modif">
+                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
+                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
+                        </div>
+                        <img class="square-image" src="../assets/sac5.jpg" alt="Placeholder Image">
+                    </div>
+                    <div class="image-title">
+                        <div class="fruit">Sac5</div>
+                        <div class="ajout_panier">
+                            <div class="prix">14000 Fcfa</div>
+                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="square-container" id="imageContainer6" onclick="toggleSelection('imageContainer6')">
+                    <div class="formulaire">
+                        <div class="modif">
+                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
+                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
+                        </div>
+                        <img class="square-image" src="../assets/sac6.jpg" alt="Placeholder Image">
+                    </div>
+                    <div class="image-title">
+                        <div class="fruit">Sac6</div>
+                        <div class="ajout_panier">
+                            <div class="prix">8000 Fcfa</div>
+                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="square-container" id="imageContainer7" onclick="toggleSelection('imageContainer7')">
+                    <div class="formulaire">
+                        <div class="modif">
+                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
+                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
+                        </div>
+                        <img class="square-image" src="../assets/sac6.jpg" alt="Placeholder Image">
+                    </div>
+                    <div class="image-title">
+                        <div class="fruit">Sac7</div>
+                        <div class="ajout_panier">
+                            <div class="prix">12000 Fcfa</div>
+                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="square-container" id="imageContainer8" onclick="toggleSelection('imageContainer8')">
+                    <div class="formulaire">
+                        <div class="modif">
+                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
+                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
+                        </div>
+                        <img class="square-image" src="../assets/sac7.jpg" alt="Placeholder Image">
+                    </div>
+                    <div class="image-title">
+                        <div class="fruit">Sac8</div>
+                        <div class="ajout_panier">
+                            <div class="prix">10000 Fcfa</div>
+                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="square-container" id="imageContainer9" onclick="toggleSelection('imageContainer9')">
+                    <div class="formulaire">
+                        <div class="modif">
+                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
+                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
+                        </div>
+                        <img class="square-image" src="../assets/sac8.jpg" alt="Placeholder Image">
+                    </div>
+                    <div class="image-title">
+                        <div class="fruit">Sac9</div>
+                        <div class="ajout_panier">
+                            <div class="prix">12000 Fcfa</div>
+                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{%static 'base.js'%}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
