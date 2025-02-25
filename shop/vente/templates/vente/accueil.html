@@ -73,40 +73,24 @@
        <div class="cat_pub">
             <div class="gauche">
                 <div class="cart-item-categorie"><h5>Catégorie</h5></div>
-                <div class="cart-item"><a href="">Vêtements pour femmes</a></div>
-                <div class="cart-item"><a href="">Vêtements pour hommes</a></div>
-                <div class="cart-item"><a href="">Chaussure pour femmes</a></div>
-                <div class="cart-item"><a href="">Chaussure pour hommes</a></div>
-                <div class="cart-item"><a href="">Cheveux naturels</a></div>
-                <div class="cart-item"><a href="">Bijoux et accessoires</a></div>
-                <div class="cart-item"><a href="{% url 'categorie' %}">Sacs et bagages</a></div>
+                {% for categorie in categories %}
+                    <div class="cart-item"><a href="{% url 'categorie_filtre' categorie.id %}">{{categorie.nom}}</a></div>
+                {% endfor %}
             </div>
             <div class="droite">
                 <marquee direction = "right" class="pub-slider">
-                    <div class="pub-bloc">
-                        <div class="left-bloc">
-                            <span class="welcome">Chaussure homme made in Sénégal</span>
-                            <span class="welcome-text">Des chaussure de qualité et confortable </span>
-                            <a href="#" class="reserver">Commander</a>
+                    {% for pub in pubs %}
+                        {% if pub.produit %}
+                        <div class="pub-bloc">
+                            <div class="left-bloc">
+                                <span class="welcome">{{ pub.produit.nom }}</span>
+                                <span class="welcome-text">{{ pub.description }} </span>
+                                <a href="#" class="reserver">Commander</a>
+                            </div>
+                            <img class="pub-image" src="{{ pub.produit.image.url }}" alt="">
                         </div>
-                        <img class="pub-image" src="../assets/chaussure1-removebg-preview.png" alt="">
-                    </div>
-                    <div class="pub-bloc">
-                        <div class="left-bloc">
-                            <span class="welcome">Sac à main</span>
-                            <span class="welcome-text">Des sacs jolies, léger et de bonne qualité</span>
-                            <a href="#" class="reserver">Commander</a>
-                        </div>
-                        <img class="pub-image" src="../assets/sac1-removebg-preview.png" alt="">
-                    </div>
-                    <div class="pub-bloc">
-                        <div class="left-bloc">
-                            <span class="welcome">Cheveux naturel</span>
-                            <span class="welcome-text">Des cheveux 100% Naturels!</span>
-                            <a href="#" class="reserver">Commander</a>
-                        </div>
-                        <img class="pub-image" src="../assets/perruque1-removebg-preview.png" alt="">
-                    </div>
+                        {% endif %}
+                    {% endfor %}
                 </marquee>
                 <div class="bonne_affaire">
                     <div class="entete_cat">
@@ -114,150 +98,24 @@
                         <div class="voir_plus"><a href="{% url 'boutique' %}">Voir plus ></a></div>
                     </div>
                     <div class="container">
-                        <div class="square-container" id="imageContainer1" onclick="toggleSelection('imageContainer1')">
+                        {% for bonnesaffaire in bonnesaffaires %}
+                            {% if bonnesaffaire.produit %}
+                            <div class="square-container" id="imageContainer{{ bonnesaffaire.id }}" onclick="toggleSelection('imageContainer1')">
                             <div class="formulaire">
-                                <div class="modif">
-                                    <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                                    <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                                </div>
-                                <a href="{% url 'detail_produit' %}"><img class="square-image" src="../assets/chaussure1.jpg" alt="Placeholder Image"></a>
+                                <a href="{% url 'detail_produit' bonnesaffaire.produit.id %}">
+                                    <img class="square-image" src="{{ bonnesaffaire.produit.image.url }}" alt="Placeholder Image">
+                                </a>                                
                             </div>
                             <div class="image-title">
-                                <div class="fruit">chaussure1</div>
+                                <div class="fruit">{{ bonnesaffaire.produit.nom }}</div>
                                 <div class="ajout_panier">
-                                    <div class="prix">10000 Fcfa</div>
-                                    <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
+                                    <div class="prix">{{ bonnesaffaire.produit.prix }} Fcfa</div>
+                                    <div><img src="{%static 'Shopping Cart.png'%}" alt=""></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="square-container" id="imageContainer2" onclick="toggleSelection('imageContainer2')">
-                            <div class="formulaire">
-                                <div class="modif">
-                                    <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                                    <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                                </div>
-                                <a href="{% url 'detail_produit' %}"><img class="square-image" src="../assets/chaussure2.jpg" alt="Placeholder Image"></a>
                             </div>
-                            <div class="image-title">
-                                <div class="fruit">chaussure2</div>
-                                <div class="ajout_panier">
-                                    <div class="prix">11000 Fcfa</div>
-                                    <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="square-container" id="imageContainer3" onclick="toggleSelection('imageContainer3')">
-                            <div class="formulaire">
-                                <div class="modif">
-                                    <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                                    <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                                </div>
-                                <a href="{% url 'detail_produit' %}"><img class="square-image" src="../assets/chaussure10.jpg" alt="Placeholder Image"></a>
-                            </div>
-                            <div class="image-title">
-                                <div class="fruit">chaussure3</div>
-                                <div class="ajout_panier">
-                                    <div class="prix">8000 Fcfa</div>
-                                    <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="square-container" id="imageContainer4" onclick="toggleSelection('imageContainer4')">
-                            <div class="formulaire">
-                                <div class="modif">
-                                    <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                                    <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                                </div>
-                                <a href="{% url 'detail_produit' %}"><img class="square-image" src="../assets/chaussure3.jpg" alt="Placeholder Image"></a>
-                            </div>
-                            <div class="image-title">
-                                <div class="fruit">chaussure4</div>
-                                <div class="ajout_panier">
-                                    <div class="prix">10000 Fcfa</div>
-                                    <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="square-container" id="imageContainer5" onclick="toggleSelection('imageContainer5')">
-                            <div class="formulaire">
-                                <div class="modif">
-                                    <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                                    <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                                </div>
-                                <a href="{% url 'detail_produit' %}"><img class="square-image" src="../assets/chaussure4.jpg" alt="Placeholder Image"></a>
-                            </div>
-                            <div class="image-title">
-                                <div class="fruit">chaussure5</div>
-                                <div class="ajout_panier">
-                                    <div class="prix">5000 Fcfa</div>
-                                    <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="square-container" id="imageContainer6" onclick="toggleSelection('imageContainer6')">
-                            <div class="formulaire">
-                                <div class="modif">
-                                    <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                                    <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                                </div>
-                                <a href="{% url 'detail_produit' %}"><img class="square-image" src="../assets/chaussure5.jpg" alt="Placeholder Image"></a>
-                            </div>
-                            <div class="image-title">
-                                <div class="fruit">chaussure6</div>
-                                <div class="ajout_panier">
-                                    <div class="prix">12000 Fcfa</div>
-                                    <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="square-container" id="imageContainer7" onclick="toggleSelection('imageContainer7')">
-                            <div class="formulaire">
-                                <div class="modif">
-                                    <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                                    <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                                </div>
-                                <a href="{% url 'detail_produit' %}"><img class="square-image" src="../assets/chaussure6.jpg" alt="Placeholder Image"></a>
-                            </div>
-                            <div class="image-title">
-                                <div class="fruit">chaussure7</div>
-                                <div class="ajout_panier">
-                                    <div class="prix">11000 Fcfa</div>
-                                    <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="square-container" id="imageContainer8" onclick="toggleSelection('imageContainer8')">
-                            <div class="formulaire">
-                                <div class="modif">
-                                    <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                                    <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                                </div>
-                                <a href="{% url 'detail_produit' %}"><img class="square-image" src="../assets/chaussure7.jpg" alt="Placeholder Image"></a>
-                            </div>
-                            <div class="image-title">
-                                <div class="fruit">chaussure8</div>
-                                <div class="ajout_panier">
-                                    <div class="prix">13000 Fcfa</div>
-                                    <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="square-container" id="imageContainer9" onclick="toggleSelection('imageContainer9')">
-                            <div class="formulaire">
-                                <div class="modif">
-                                    <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                                    <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                                </div>
-                                <a href="{% url 'detail_produit' %}"><img class="square-image" src="../assets/chaussure8.jpg" alt="Placeholder Image"></a>
-                            </div>
-                            <div class="image-title">
-                                <div class="fruit">chaussure9</div>
-                                <div class="ajout_panier">
-                                    <div class="prix">7000 Fcfa</div>
-                                    <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                                </div>
-                            </div>
-                        </div>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
             </div>

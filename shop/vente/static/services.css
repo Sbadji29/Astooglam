@@ -16,6 +16,7 @@
     font-size: 12px;
 }
 
+
 .serv{
     margin-top: 50px;
     padding: 10px;
@@ -29,6 +30,27 @@
 .serv span{
     font-size: 40px;
     font-weight: bold;
+}
+
+.serv_a {
+    color: inherit !important;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.serv_a:visited {
+    color: inherit !important;
+}
+
+/* Désactive les effets de survol */
+.serv_a:hover {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+/* Désactive le changement de couleur quand le lien est actif */
+.serv_a:active {
+    color: inherit !important;
 }
         
 

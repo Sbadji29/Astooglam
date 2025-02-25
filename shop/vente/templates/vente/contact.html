@@ -70,19 +70,31 @@
         <button class="sr-btn-mobile-nav"><img src="{% static 'search.png'%}" alt=""></button>
     </form>
     <div class="contenu">
-        <div class="debut">
-            <div><h4>Contact</h4></div>
-        </div>
         <div class="corps">
-            <span>Envoyez nous un mail</span>
-            <form action="">
+            <span>Envoyez-nous un mail</span>
+            <form action="{% url 'contact' %}" method="POST">
+                {% csrf_token %}
                 <div class="formulaire">
                     <img class="icon" src="../assets/Mail outline.png" alt="">
-                    <div class="donnee"><input type="email" placeholder="Adresse Email"></div>
+                    <div class="donnee">
+                        <input type="email" name="email" placeholder="Adresse Email" required>
+                    </div>
                 </div>
-                <div class="donnee"><textarea name="mess" id="" cols="30" rows="5">Message</textarea></div>
+                <div class="donnee">
+                    <textarea name="message" cols="30" rows="5" placeholder="Votre message" required></textarea>
+                </div>
+                <div class="bouton">
+                    <button type="submit" class="btn">Envoyer</button>
+                </div>
             </form>
         </div>
+        {% if messages %}
+        <div class="messages">
+        {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+        </div>
+        {% endif %}        
         <span>Ou contactez-nous via </span>
         <div class="reseau">
             <div class="contact">

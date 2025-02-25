@@ -71,154 +71,26 @@
     </form>
     <div class="contenu">
         <div class="cat">
+            {% if categorie_active %}
             <div class="entete_cat">
-                <div class="nom_cat">Sac</div>
+                <div class="nom_cat">{{ categorie_active.nom }}</div>
             </div>
+            {% endif %}
             <div class="container">
-                <div class="square-container" id="imageContainer1" onclick="toggleSelection('imageContainer1')">
+                {% for produit in produits %}
+                <div class="square-container" id="imageContainer{{ produit.id }}" onclick="toggleSelection('imageContainer{{ produit.id }}')">
                     <div class="formulaire">
-                        <div class="modif">
-                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                        </div>
-                        <img class="square-image" src="../assets/sac1.jpg" alt="Placeholder Image">
+                        <img class="square-image" src="{{ produit.image.url }}" alt="{{ produit.nom }}">                    
                     </div>
                     <div class="image-title">
-                        <div class="fruit">Sac1</div>
+                        <div class="fruit">{{ produit.nom }}</div>
                         <div class="ajout_panier">
-                            <div class="prix">15000 Fcfa</div>
-                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
+                            <div class="prix">{{ produit.prix }} Fcfa</div>
+                            <div><img src="{%static 'Shopping Cart.png'%}" alt=""></div>
                         </div>
                     </div>
                 </div>
-                <div class="square-container" id="imageContainer2" onclick="toggleSelection('imageContainer2')">
-                    <div class="formulaire">
-                        <div class="modif">
-                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                        </div>
-                        <img class="square-image" src="../assets/sac2.jpg" alt="Placeholder Image">
-                    </div>
-                    <div class="image-title">
-                        <div class="fruit">Sac2</div>
-                        <div class="ajout_panier">
-                            <div class="prix">10000 Fcfa</div>
-                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="square-container" id="imageContainer3" onclick="toggleSelection('imageContainer3')">
-                    <div class="formulaire">
-                        <div class="modif">
-                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                        </div>
-                        <img class="square-image" src="../assets/sac3.jpg" alt="Placeholder Image">
-                    </div>
-                    <div class="image-title">
-                        <div class="fruit">Sac3</div>
-                        <div class="ajout_panier">
-                            <div class="prix">20000 Fcfa</div>
-                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="square-container" id="imageContainer4" onclick="toggleSelection('imageContainer4')">
-                    <div class="formulaire">
-                        <div class="modif">
-                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                        </div>
-                        <img class="square-image" src="../assets/sac4.jpg" alt="Placeholder Image">
-                    </div>
-                    <div class="image-title">
-                        <div class="fruit">Sac4</div>
-                        <div class="ajout_panier">
-                            <div class="prix">12000 Fcfa</div>
-                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="square-container" id="imageContainer5" onclick="toggleSelection('imageContainer5')">
-                    <div class="formulaire">
-                        <div class="modif">
-                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                        </div>
-                        <img class="square-image" src="../assets/sac5.jpg" alt="Placeholder Image">
-                    </div>
-                    <div class="image-title">
-                        <div class="fruit">Sac5</div>
-                        <div class="ajout_panier">
-                            <div class="prix">14000 Fcfa</div>
-                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="square-container" id="imageContainer6" onclick="toggleSelection('imageContainer6')">
-                    <div class="formulaire">
-                        <div class="modif">
-                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                        </div>
-                        <img class="square-image" src="../assets/sac6.jpg" alt="Placeholder Image">
-                    </div>
-                    <div class="image-title">
-                        <div class="fruit">Sac6</div>
-                        <div class="ajout_panier">
-                            <div class="prix">8000 Fcfa</div>
-                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="square-container" id="imageContainer7" onclick="toggleSelection('imageContainer7')">
-                    <div class="formulaire">
-                        <div class="modif">
-                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                        </div>
-                        <img class="square-image" src="../assets/sac6.jpg" alt="Placeholder Image">
-                    </div>
-                    <div class="image-title">
-                        <div class="fruit">Sac7</div>
-                        <div class="ajout_panier">
-                            <div class="prix">12000 Fcfa</div>
-                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="square-container" id="imageContainer8" onclick="toggleSelection('imageContainer8')">
-                    <div class="formulaire">
-                        <div class="modif">
-                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                        </div>
-                        <img class="square-image" src="../assets/sac7.jpg" alt="Placeholder Image">
-                    </div>
-                    <div class="image-title">
-                        <div class="fruit">Sac8</div>
-                        <div class="ajout_panier">
-                            <div class="prix">10000 Fcfa</div>
-                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="square-container" id="imageContainer9" onclick="toggleSelection('imageContainer9')">
-                    <div class="formulaire">
-                        <div class="modif">
-                            <a href="#"><img src="../assets/edit.png" alt="" class="icon"></a>
-                            <a href="#"><img src="../assets/Trash.png" alt="" class="icon"></a>
-                        </div>
-                        <img class="square-image" src="../assets/sac8.jpg" alt="Placeholder Image">
-                    </div>
-                    <div class="image-title">
-                        <div class="fruit">Sac9</div>
-                        <div class="ajout_panier">
-                            <div class="prix">12000 Fcfa</div>
-                            <div><img src="../assets/Add Shopping Cart.png" alt=""></div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

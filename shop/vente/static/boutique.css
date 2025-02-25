@@ -65,6 +65,10 @@ body .contenu{
 
 }
 
+.Shopping img{
+    width: 20px;
+    height: auto;
+}
 
 .tete button{
     width: 200px;

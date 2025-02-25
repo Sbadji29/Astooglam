@@ -126,3 +126,10 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'vente.User'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Serveur SMTP (exemple : Gmail)
+EMAIL_PORT = 587  # Port SMTP
+EMAIL_USE_TLS = True  # Utilisation de TLS
+EMAIL_HOST_USER = 'sadiabadji9@gmail.com'  # Ton adresse email
+EMAIL_HOST_PASSWORD = 'dtpw qftu kiwg xlam'  # Mot de passe ou App Password

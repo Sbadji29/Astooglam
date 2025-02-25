@@ -1,9 +1,16 @@
-from django.shortcuts import render
-
+from django.shortcuts import get_object_or_404, render
+from .models import *
+from django.core.mail import send_mail
+from django.shortcuts import redirect
+from django.contrib import messages
 # Create your views here.
 
 def accueil(request):
-    return render(request,'vente/accueil.html')
+    categories = Categorie.objects.all()  
+    pubs = Pub.objects.all()
+    produits = Produit.objects.all()  
+    bonnesaffaire = BonnesAffaire.objects.all()
+    return render(request,'vente/accueil.html',{'categories': categories, 'pubs': pubs,'produits': produits,'bonnesaffaires': bonnesaffaire})
 
 
 def apropos(request):
@@ -11,11 +18,20 @@ def apropos(request):
 
 
 def boutique(request):
-    return render(request,'vente/boutique.html')
+    produits = Produit.objects.all()  
+    categories = Categorie.objects.all()  
+    return render(request, 'vente/boutique.html', {'produits': produits, 'categories': categories})
 
 
-def categorie(request):
-    return render(request,'vente/categorie.html')
+def categorie(request,category_id=None):
+    produits = Produit.objects.all()  
+    categories = Categorie.objects.all() 
+    if category_id:
+        categorie_active = get_object_or_404(Categorie, id=category_id)
+        produits = Produit.objects.filter(categorie=categorie_active)
+    else:
+        categorie_active = None
+    return render(request,'vente/categorie.html', {'produits': produits, 'categories': categories, 'categorie_active': categorie_active})
 
 
 def commande(request):
@@ -31,15 +47,35 @@ def connexion(request):
 
 
 def contact(request):
-    return render(request,'vente/contact.html')
+    if request.method == "POST":
+        email = request.POST.get("email")
+        message = request.POST.get("message")
+
+        if email and message:
+            try:
+                send_mail(
+                    subject="Nouveau message de contact",
+                    message=f"Email: {email}\n\nMessage:\n{message}",
+                    from_email=email,  # L'expéditeur (l'utilisateur qui envoie)
+                    recipient_list=["ton_email@gmail.com"],  # Où tu reçois le message
+                    fail_silently=False,
+                )
+                messages.success(request, "Votre message a été envoyé avec succès !")
+            except Exception as e:
+                messages.error(request, "Erreur lors de l'envoi du message.")
+
+        return redirect("contact")  
+
+    return render(request, "vente/contact.html")
 
 
 def detail_commande(request):
     return render(request,'vente/detail_commande.html')
 
 
-def detail_produit(request):
-    return render(request,'vente/detail_produit.html')
+def detail_produit(request, produit_id):  
+    produit = get_object_or_404(Produit, id=produit_id)
+    return render(request, 'vente/detail_produit.html', {'produit': produit})
 
 
 def panier(request):
@@ -63,4 +99,5 @@ def register(request):
 
 
 def services(request):
-    return render(request,'vente/services.html')
+    services = Service.objects.all()
+    return render(request,'vente/services.html',{'services':services})

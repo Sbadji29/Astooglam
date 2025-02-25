@@ -33,7 +33,7 @@
                     <span>5</span>
                     <img src="{% static 'panier.png'%}" alt="">
                 </a>
-                <a href="{% url 'Profil' %}">
+                <a href="{% url 'profil' %}">
                     <div class="user-container"></div>
                 </a>
             </div>
@@ -70,27 +70,23 @@
         <button class="sr-btn-mobile-nav"><img src="{% static 'search.png'%}" alt=""></button>
     </form>
     <div class="contenu">
-        <div class="product-title"><h2>Chaussure traditionnelle</h2></div>
-        <div class="product-container">
-            <div class="product-image">
-                <img src="../assets/chaussure1.jpg" alt="Produit">
+        <div class="product-title"><h2>{{ produit.description }}</h2></div>
+            <div class="product-container">
+                <div class="product-image">
+                    <a href="{% url 'detail_produit' produit.id %}"> 
+                        <img class="square-image" src="{{ produit.image.url }}" alt="{{ produit.nom }}">
+                    </a>                
+                </div>
             </div>
-        </div>
-        <div class="product-details">
-            <div class="product-description">
-                Ces chaussures africaines traditionnelles incarnent l’élégance et l’artisanat 
-                authentique. Conçues à partir de matériaux naturels et locaux, elles reflètent 
-                l’héritage culturel unique à travers leurs motifs vibrants et leurs finitions 
-                artisanales. Chaque paire raconte une histoire, mêlant confort, durabilité et 
-                esthétisme. Idéales pour les occasions spéciales ou pour ajouter une touche 
-                d’originalité à votre tenue quotidienne, ces chaussures s’adaptent parfaitement 
-                aux amateurs de mode alliant tradition et modernité.
-            </div>
-            <div class="product-price">Prix : <strong>20 000 FCFA</strong></div>
-            <div class="bouton">
-                <a href="#" class="btn">Ajouter au panier</a>
-            </div>
-        </div>
+            <div class="product-details">
+                <div class="product-description">
+                    {{ produit.description }}
+                </div>
+                <div class="product-price">Prix : <strong>{{ produit.prix }} FCFA</strong></div>
+                <div class="bouton">
+                    <a href="#" class="btn">Ajouter au panier</a>
+                </div>
+            </div> 
     </div>
     <script src="{%static 'base.js'%}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

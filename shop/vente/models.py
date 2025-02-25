@@ -85,7 +85,6 @@ class DetailCommande(models.Model):
 class Pub(models.Model):
     produit = models.ForeignKey(Produit,on_delete=models.SET_NULL,null=True)
     description = models.TextField()
-    image = models.ImageField(upload_to= 'pub_image/')
 
     def __str__(self):
-        return self.produit
+        return self.produit.nom if self.produit else "Pub sans produit"
