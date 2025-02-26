@@ -3,6 +3,7 @@ from .models import *
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.contrib import messages
+from django.http import JsonResponse
 # Create your views here.
 
 def accueil(request):
@@ -80,7 +81,13 @@ def detail_produit(request, produit_id):
 
 def panier(request):
     return render(request,'vente/panier.html')
-
+    panier = request.session.get('panier', {})
+    
+    if produit_id in panier:
+        del panier[produit_id]
+    
+    request.session['panier'] = panier
+    return JsonResponse({'message': 'Supprimé du panier', 'panier': panier})
 
 def politique_confidentialite(request):
     return render(request,'vente/politique_confidentialite.html')
