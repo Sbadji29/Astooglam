@@ -4,6 +4,8 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.http import JsonResponse
+from django.contrib.auth import authenticate, login
+from .forms import ConnexionForm,InscriptionForm
 # Create your views here.
 
 def accueil(request):
@@ -44,7 +46,21 @@ def condition_utilisation(request):
 
 
 def connexion(request):
-    return render(request,'vente/connexion.html')
+    if request.method == "POST":
+        form = ConnexionForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data["email"]
+            password = form.cleaned_data["password"]
+            user = authenticate(request, username=email, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect("accueil")  
+            else:
+                messages.error(request, "Email ou mot de passe incorrect.")
+    else:
+        form = ConnexionForm()
+    
+    return render(request, 'vente/connexion.html', {'form': form})
 
 
 def contact(request):
@@ -57,8 +73,8 @@ def contact(request):
                 send_mail(
                     subject="Nouveau message de contact",
                     message=f"Email: {email}\n\nMessage:\n{message}",
-                    from_email=email,  # L'expéditeur (l'utilisateur qui envoie)
-                    recipient_list=["ton_email@gmail.com"],  # Où tu reçois le message
+                    from_email=email,  
+                    recipient_list=["ton_email@gmail.com"],  
                     fail_silently=False,
                 )
                 messages.success(request, "Votre message a été envoyé avec succès !")
@@ -102,7 +118,26 @@ def recup_mdp_web(request):
 
 
 def register(request):
-    return render(request,'vente/register.html')
+    if request.method == "POST":
+        prenom = request.POST.get("prenom")
+        nom = request.POST.get("nom")
+        telephone = request.POST.get("telephone")
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        if User.objects.filter(username=email).exists():
+            messages.error(request, "Cet email est déjà utilisé.")
+            return redirect("register")
+
+        user = User.objects.create_user(username=email, first_name=prenom, last_name=nom, email=email, password=password)
+        user.save()
+
+        login(request, user)
+
+        messages.success(request, "Inscription réussie ! Vous êtes maintenant connecté.")
+        return redirect("home") 
+
+    return render(request, "vente/register.html")
 
 
 def services(request):
