@@ -13,7 +13,7 @@
 <body>
     <nav class="large-screen-nav">
         <div class="left-ls-nav">
-            <img src="{% static 'logo1.jpg'%}" alt="">
+            <a href="{% url '' %}"><img src="{% static 'logo1.jpg'%}" alt=""></a>
             <div class="ls-nav-links-container">
                 <a href="{% url '' %}">Accueil</a>
                 <a class="active" href="{% url 'boutique' %}">Boutique</a>
@@ -84,7 +84,8 @@
             <div class="container">
                 {% for produit in produits %}
                     {% if produit.categorie == categorie %}
-                        <div class="square-container" id="imageContainer{{ produit.id }}" onclick="toggleSelection('imageContainer{{ produit.id }}')">
+                    <div class="square-container" id="imageContainer{{ produit.id }}" 
+                    onclick="toggleSelection('imageContainer{{ produit.id }}')">               
                             <div class="formulaire">
                                 <a href="{% url 'detail_produit' produit.id %}">
                                     <img class="square-image" src="{{ produit.image.url }}" alt="{{ produit.nom }}">
@@ -95,7 +96,13 @@
                                 <div class="ajout_panier">
                                     <div class="prix">{{ produit.prix }} Fcfa</div>
                                     <div class="Shopping">
-                                        <img src="{% static 'Shopping Cart.png' %}" alt="">
+                                        <img src="{% static 'Shopping Cart.png' %}" 
+                                        alt="Ajouter au panier" 
+                                        class="add-to-cart" 
+                                        data-id="{{ produit.id }}" 
+                                        data-nom="{{ produit.nom }}" 
+                                        data-prix="{{ produit.prix }}" 
+                                        data-image="{{ produit.image.url }}" alt="">
                                     </div>                                    
                                 </div>
                             </div>
@@ -107,6 +114,7 @@
         {% endfor %}
     </div>
     <script src="{%static 'panier.js'%}"></script>
+    <script src="{% static 'boutique.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>   
 </body>
