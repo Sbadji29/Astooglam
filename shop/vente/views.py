@@ -5,8 +5,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login
-from .forms import ConnexionForm,InscriptionForm
-# Create your views here.
+from .forms import ConnexionForm
 
 def accueil(request):
     categories = Categorie.objects.all()  
