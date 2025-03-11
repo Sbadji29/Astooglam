@@ -30,7 +30,7 @@
             </form>
             <div class="ls-nav-panier-user">
                 <a href="{% url 'panier' %}">
-                    <span>5</span>
+                    <span>{{nombre}}</span>
                     <img src="{% static 'panier.png'%}" alt="">
                 </a>
                 <a href="{% url 'profil' %}">
@@ -43,7 +43,7 @@
         <img id="open-mobile" class="hamburger-image" src="{% static 'menu.png'%}" alt="">
         <div class="ls-nav-panier-user">
             <a href="{% url 'panier' %}">
-                <span>5</span>
+                <span>{{nombre}}</span>
                 <img src="{% static 'panier.png'%}" alt="">
             </a>
             <a href="{% url 'profil' %}">
@@ -84,7 +84,7 @@
                 </div>
                 <div class="product-price">Prix : <strong>{{ produit.prix }} FCFA</strong></div>
                 <div class="bouton">
-                    <a href="#" class="btn">Ajouter au panier</a>
+                    <a href="{% url 'ajouter_au_panier' produit.id %}" class="btn">Ajouter au panier</a>
                 </div>
             </div> 
     </div>

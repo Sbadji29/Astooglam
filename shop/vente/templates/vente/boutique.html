@@ -30,7 +30,7 @@
             </form>
             <div class="ls-nav-panier-user">
                 <a href="{% url 'panier' %}">
-                    <span>5</span>
+                    <span>{{nombre}}</span>
                     <img src="{% static 'panier.png'%}" alt="">
                 </a>
                 <a href="{% url 'profil' %}">
@@ -43,7 +43,7 @@
         <img id="open-mobile" class="hamburger-image" src="{% static 'menu.png'%}" alt="">
         <div class="ls-nav-panier-user">
             <a href="{% url 'panier' %}">
-                <span>5</span>
+                <span>{{nombre}}</span>
                 <img src="{% static 'panier.png'%}" alt="">
             </a>
             <a href="{% url 'profil' %}">
@@ -95,15 +95,11 @@
                                 <div class="fruit">{{ produit.nom }}</div>
                                 <div class="ajout_panier">
                                     <div class="prix">{{ produit.prix }} Fcfa</div>
-                                    <div class="Shopping">
-                                        <img src="{% static 'Shopping Cart.png' %}" 
-                                        alt="Ajouter au panier" 
-                                        class="add-to-cart" 
-                                        data-id="{{ produit.id }}" 
-                                        data-nom="{{ produit.nom }}" 
-                                        data-prix="{{ produit.prix }}" 
-                                        data-image="{{ produit.image.url }}" alt="">
-                                    </div>                                    
+                                    <a href="{% url 'ajouter_au_panier' produit.id %}">
+                                        <div class="Shopping">
+                                            <img src="{% static 'Shopping Cart.png' %}" alt="Ajouter au panier" >
+                                        </div>  
+                                    </a>                                  
                                 </div>
                             </div>
                         </div>

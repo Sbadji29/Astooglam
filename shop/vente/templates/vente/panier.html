@@ -30,7 +30,7 @@
             </form>
             <div class="ls-nav-panier-user">
                 <a href="{% url 'panier' %}">
-                    <span>5</span>
+                    <span>{{nombre}}</span>
                     <img src="{% static 'panier.png'%}" alt="">
                 </a>
                 <a href="{% url 'profil' %}">
@@ -43,7 +43,7 @@
         <img id="open-mobile" class="hamburger-image" src="{% static 'menu.png'%}" alt="">
         <div class="ls-nav-panier-user">
             <a href="{% url 'panier' %}">
-                <span>5</span>
+                <span>{{nombre}}</span>
                 <img src="{% static 'panier.png'%}" alt="">
             </a>
             <a href="{% url 'profil' %}">
@@ -72,61 +72,37 @@
     <div class="contenu">
         <div class="cart">
             <h2>Panier</h2>
+            {% for item in panier %}
             <div class="cart-item">
-                <img src="../assets/chaussure1.jpg" alt="chaussure1">
+                <img src="{{item.img}}" alt="chaussure1">
                 <div class="item-details">
-                    <h3>Chaussure</h3>
+                    <h3>{{item.nom}}</h3>
                     <p class="delivery">ASTOOGLAM <span class="express">SHOP</span></p>
                 </div>
                 <div class="item-pricing">
-                    <p class="price">20 000 FCFA</p>
+                    <p class="price">{{item.prix}} FCFA</p>
                 </div>
                 <div class="quantity-controls">
-                    <button class="quantity-btn">-</button>
-                    <span class="quantity">1</span>
-                    <button class="quantity-btn">+</button>
+                    <a href="{% url 'decrementer' item.produit_id %}"><button class="quantity-btn">-</button></a>
+                    <span class="quantity">{{item.qte}}</span>
+                    <a href="{% url 'incrementer' item.produit_id %}"><button class="quantity-btn">+</button></a>
                 </div>
-                <button class="delete-btn">🗑️ Supprimer</button>
+                <a href="{% url 'supprimer' item.produit_id %}"><button class="delete-btn">🗑️ Supprimer</button></a>
             </div>
-            <div class="cart-item">
-                <img src="../assets/perruque1.jpg" alt="perruque1">
-                <div class="item-details">
-                    <h3>Chaussure</h3>
-                    <p class="delivery">ASTOOGLAM <span class="express">SHOP</span></p>
-                </div>
-                <div class="item-pricing">
-                    <p class="price">30 000 FCFA</p>
-                </div>
-                <div class="quantity-controls">
-                    <button class="quantity-btn">-</button>
-                    <span class="quantity">1</span>
-                    <button class="quantity-btn">+</button>
-                </div>
-                <button class="delete-btn">🗑️ Supprimer</button>
-            </div>
-            <div class="cart-item">
-                <img src="../assets/sac1.jpg" alt="sac1">
-                <div class="item-details">
-                    <h3>Sac</h3>
-                    <p class="delivery">ASTOOGLAM <span class="express">SHOP</span></p>
-                </div>
-                <div class="item-pricing">
-                    <p class="price">20 000 FCFA</p>
-                </div>
-                <div class="quantity-controls">
-                    <button class="quantity-btn">-</button>
-                    <span class="quantity">1</span>
-                    <button class="quantity-btn">+</button>
-                </div>
-                <button class="delete-btn">🗑️ Supprimer</button>
-            </div>
+            {% endfor %}
         </div>
         <div class="total">
             <div><h3>Total</h3></div>
-            <div class="price">70 000FCFA</div>
+            <div class="price">
+                {{total}} FCFA
+            </div>
         </div>
         <div class="bouton">
-            <a href="{% url 'detail_commande' %}" class="btnCommander">Commande</a>
+            {% if panier %}
+                <a href="{% url 'detail_commande' %}" class="btnCommander">Commande</a>
+            {% else %}
+                <h5>Votre panier est vide.</h5>
+            {% endif %}
         </div>   
     </div>
     <script src="{%static 'base.js'%}"></script>

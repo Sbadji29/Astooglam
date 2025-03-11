@@ -53,11 +53,17 @@ input, select {
     margin-bottom: 15px;
 }
 
-.produit,.sousTotal,.total{
+.produit,.sousTotal,.total,.liv,.adresse{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 20px;
+}
+
+.total{
+    margin-top: 50px;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .livraison{
@@ -89,4 +95,15 @@ input, select {
 .note {
     color: red;
     font-size: 0.9rem;
+}
+
+@media screen and (max-width: 767px){
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 20px auto;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
 }

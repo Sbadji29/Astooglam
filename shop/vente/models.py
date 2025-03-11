@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils.timezone import now
+
 # Create your models here.
 
 class User(AbstractUser):
@@ -61,13 +63,18 @@ class Service(models.Model):
 
 
 class Commande(models.Model):
-    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
-    date = models.DateField(auto_now_add=True)
-    addresse = models.CharField(max_length=200,null=True)
-    ville = models.CharField(max_length=200,null=True)
+    prenom = models.CharField(max_length=100,default='Default Address')
+    nom = models.CharField(max_length=100,default='Default nom')
+    telephone = models.CharField(max_length=20,default='Default telephone')
+    ville = models.CharField(max_length=100,default='Default ville')
+    adresse = models.TextField()
+    date_commande = models.DateTimeField(default=now)
+    sous_total = models.DecimalField(max_digits=10, decimal_places=2)
+    frais_livraison = models.DecimalField(max_digits=10, decimal_places=2)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"{self.user} - {self.date}"
+        return f"Commande de {self.nom} {self.prenom}"
     
 
 
@@ -78,7 +85,9 @@ class DetailCommande(models.Model):
     prix = models.FloatField()
 
     def __str__(self):
-        return f"{self.commande} - {self.prix}"
+        if self.commande:  
+            return f"Commande de {self.commande.prenom} {self.commande.nom} - Produit: {self.produit.nom} - {self.quantite} x {self.prix} FCFA"
+        return f"Produit: {self.produit.nom} - {self.quantite} x {self.prix} FCFA (Commande supprimée)"
     
 
 

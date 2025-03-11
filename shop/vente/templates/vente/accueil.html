@@ -30,7 +30,7 @@
             </form>
             <div class="ls-nav-panier-user">
                 <a href="{% url 'panier' %}">
-                    <span>5</span>
+                    <span>{{nombre}}</span>
                     <img src="{% static 'panier.png'%}" alt="">
                 </a>
                 <a href="{% url 'profil' %}">
@@ -43,7 +43,7 @@
         <img id="open-mobile" class="hamburger-image" src="{% static 'menu.png'%}" alt="">
         <div class="ls-nav-panier-user">
             <a href="{% url 'panier' %}">
-                <span>5</span>
+                <span>{{nombre}}</span>
                 <img src="{% static 'panier.png'%}" alt="">
             </a>
             <a href="{% url 'profil' %}">
@@ -85,7 +85,7 @@
                             <div class="left-bloc">
                                 <span class="welcome">{{ pub.produit.nom }}</span>
                                 <span class="welcome-text">{{ pub.description }} </span>
-                                <a href="#" class="reserver">Commander</a>
+                                <a href="{% url 'ajouter_au_panier' pub.produit.id %}" class="reserver">Commander</a>
                             </div>
                             <img class="pub-image" src="{{ pub.produit.image.url }}" alt="">
                         </div>
@@ -110,7 +110,7 @@
                                 <div class="fruit">{{ bonnesaffaire.produit.nom }}</div>
                                 <div class="ajout_panier">
                                     <div class="prix">{{ bonnesaffaire.produit.prix }} Fcfa</div>
-                                    <div><img src="{%static 'Shopping Cart.png'%}" alt=""></div>
+                                    <a href="{% url 'ajouter_au_panier' bonnesaffaire.produit.id %}"><div><img src="{%static 'Shopping Cart.png'%}" alt=""></div></a>
                                 </div>
                             </div>
                             </div>

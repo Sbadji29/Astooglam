@@ -30,7 +30,7 @@
             </form>
             <div class="ls-nav-panier-user">
                 <a href="{% url 'panier' %}">
-                    <span>5</span>
+                    <span>{{nombre}}</span>
                     <img src="{% static 'panier.png'%}" alt="">
                 </a>
                 <a href="{% url 'profil' %}">
@@ -43,7 +43,7 @@
         <img id="open-mobile" class="hamburger-image" src="{% static 'menu.png'%}" alt="">
         <div class="ls-nav-panier-user">
             <a href="{% url 'panier' %}">
-                <span>5</span>
+                <span>{{nombre}}</span>
                 <img src="{% static 'panier.png'%}" alt="">
             </a>
             <a href="{% url 'profil' %}">
@@ -73,51 +73,69 @@
         <div class="container">
             <div class="billing-address">
                 <h2>Adresse de Facturation</h2>
-                <form>
+                <form method="POST" action="{% url 'enregistrer_commande' %}">
+                    {% csrf_token %}
                     <label for="prenom">Prénom</label>
-                    <input type="text" id="prenom" name="prenom" placeholder="">
-    
+                    <input type="text" id="prenom" name="prenom" required>
+            
                     <label for="nom">Nom</label>
-                    <input type="text" id="nom" name="nom" placeholder="">
-    
+                    <input type="text" id="nom" name="nom" required>
+            
                     <label for="telephone">Numéro de Téléphone <span class="note">(Le livreur va vous contacter sur ce numéro)</span></label>
-                    <input type="text" id="telephone" name="telephone" placeholder="">
-    
+                    <input type="text" id="telephone" name="telephone" required>
+            
                     <label for="ville">Ville</label>
-                    <select id="ville" name="ville">
+                    <select id="ville" name="ville" required>
                         <option value="">-- Choisir --</option>
-                        <option value="france">Dakar</option>
-                        <option value="senegal">Hors Dakar</option>
+                        <option value="Dakar">Dakar</option>
+                        <option value="Hors Dakar">Hors Dakar</option>
                     </select>
-    
+            
                     <label for="adresse">Adresse</label>
-                    <input type="text" id="adresse" name="adresse" placeholder="Exemple : Hlm Grand-Yoff">
+                    <input type="text" id="adresse" name="adresse" placeholder="Exemple : Hlm Grand-Yoff" required>
+                    <div class="bouton">
+                        <button type="submit" class="btn">Passer la commande</button>
+                    </div>
                 </form>
             </div>
-    
             <div class="order-summary">
                 <h2>Total de la Commande</h2>
+                {% for item in panier %}
                 <div class="produit">
-                    <div>Produits</div>
-                    <div>2 x  Sac</div>
-                    <div>40 000 Fcfa</div>
+                    <div>{{item.categorie}}</div>
+                    <div>{{item.qte}} x  {{item.nom}}</div>
+                    <div>{{item.prix}} Fcfa</div>
                 </div>
+                {% endfor %}
                 <div class="sousTotal">
                     <div>Sous-total</div>
-                    <div>40 000 Fcfa</div>
+                    <div>{{sous_total}} Fcfa</div>
                 </div>
                 <div class="livraison">
-                    <div>Livraison</div>
-                    <div>Adresse : ......................................</div>
+                    <div class="liv">
+                        <div>Livraison</div>
+                        <div>{{ commande.ville }}</div>
+                    </div>
+                    <div class="liv">
+                        <div>Frais de Livraison :</div>
+                        <div>{{ frais_livraison }} Fcfa</div>
+                    </div>
+                    <div class="adresse">
+                        <div>Adresse : </div>
+                        <div>{{ commande.adresse }}</div>
+                    </div>
                 </div>
                 <div class="total">
                     <div>Total</div>
-                    <div>40 000 Fcfa</div>
+                    <div>{{ total }} Fcfa</div>
                 </div>
-                <h3>Paiement</h3>
-                <div class="bouton">
-                    <a href="#" class="btn">Passer la commande</a>
-                </div>
+                {% if commande.adresse %}
+                <a href="{% url 'commande' %}">
+                    <div class="bouton">
+                        <button type="submit" class="btn">Valider</button>
+                    </div>
+                {% endif %}
+                </a>
             </div>
         </div>
     </div>
