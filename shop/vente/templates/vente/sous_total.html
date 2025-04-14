@@ -7,8 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{%static 'base.css'%}">
     <link rel="shortcut icon" href="{% static 'logo1.jpg'%}" type="image/x-icon">
-    <link rel="stylesheet" href="{%static 'panier.css'%}">
-    <title>Panier</title>
+    <title>Detail commande</title>
+    <link rel="stylesheet" href="{%static 'detail_commande.css'%}">
 </head>
 <body>
     <nav class="large-screen-nav">
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="right-ls-nav">
-            <form action="{% url 'boutique' %}" method="get" class="ls-nav-search-form">
+            <form action="#" class="ls-nav-search-form">
                 <img class="sr-icon-ls-nav" src="{% static 'search.png'%}" alt="">
                 <input type="text" name="sr-input-ls-nav" id="sr-input-ls-nav" placeholder="Rechercher">
                 <button class="sr-btn-ls-nav"><img src="{% static 'search.png'%}" alt=""></button>
@@ -64,19 +64,53 @@
             <a href="{% url 'contact' %}">Contact</a>
         </div>
     </div>
-    <form action="{% url 'boutique' %}" method="get" class="mobile-nav-search-form">
+    <form action="#" class="mobile-nav-search-form">
         <img class="sr-icon-mobile-nav" src="{% static 'search.png'%}" alt="">
         <input type="text" name="sr-input-ls-nav" id="sr-input-mobile-nav" placeholder="Rechercher">
         <button class="sr-btn-mobile-nav"><img src="{% static 'search.png'%}" alt=""></button>
     </form>
     <div class="contenu">
-        <div class="alert alert-success">
-            Commande passée avec succès
+        <div class="container">
+            <div class="order-summary">
+                <h2>Total de la Commande</h2>
+                {% for item in panier %}
+                <div class="produit">
+                    <div>{{item.categorie}}</div>
+                    <div>{{item.qte}} x  {{item.nom}}</div>
+                    <div>{{item.prix}} Fcfa</div>
+                </div>
+                {% endfor %}
+                <!-- <div class="sousTotal">
+                    <div>Sous-total</div>
+                    <div>{{sous_total}} Fcfa</div>
+                </div> -->
+                <!-- <div class="livraison">
+                    <div class="liv">
+                        <div>Livraison</div>
+                        <div>{{ ville }}</div>
+                    </div>
+                    <div class="liv">
+                        <div>Frais de Livraison :</div>
+                        <div>{{ frais_livraison }} Fcfa</div>
+                    </div>
+                    <div class="adresse">
+                        <div>Adresse : </div>
+                        <div>{{ adresse }}</div>
+                    </div>
+                </div> -->
+                <div class="total">
+                    <div>Total</div>
+                    <div>{{ total }} Fcfa</div>
+                </div>
+                <a href="{% url 'detail_commande' %}">
+                <div class="bouton">
+                    <button type="submit" class="btn">Valider</button>
+                </div>
+                </a>
+            </div>
         </div>
-    </div>
     <script src="{%static 'base.js'%}"></script>
-    <script src="{%static 'panier.js'%}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

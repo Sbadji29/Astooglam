@@ -23,7 +23,7 @@ from vente import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.accueil,name=""),
-    path('apropos', views.apropos,name="apropos"),
+    path('apropos/', views.apropos,name="apropos"),
     path('boutique/', views.boutique,name="boutique"),
     path('categorie/', views.categorie,name="categorie"),
     path('categorie/<int:category_id>/', views.categorie, name='categorie_filtre'),
@@ -32,6 +32,7 @@ urlpatterns = [
     path('connexion/',views.connexion,name="connexion"),
     path('contact/',views.contact,name="contact"),
     path('detail_commande/',views.detail_commande,name="detail_commande"),
+    path('sous_total/',views.sous_total,name="sous_total"),
     path('detail_produit/<int:produit_id>/', views.detail_produit, name="detail_produit"),
     path('panier/',views.panier,name="panier"),
     path('politique_confidentialite/',views.politique_confidentialite,name="politique_confidentialite"),

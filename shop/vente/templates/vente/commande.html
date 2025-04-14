@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="right-ls-nav">
-            <form action="#" class="ls-nav-search-form">
+            <form action="{% url 'boutique' %}" method="get" class="ls-nav-search-form">
                 <img class="sr-icon-ls-nav" src="{% static 'search.png'%}" alt="">
                 <input type="text" name="sr-input-ls-nav" id="sr-input-ls-nav" placeholder="Rechercher">
                 <button class="sr-btn-ls-nav"><img src="{% static 'search.png'%}" alt=""></button>
@@ -65,7 +65,7 @@
             <a href="{% url 'contact' %}">Contact</a>
         </div>
     </div>
-    <form action="#" class="mobile-nav-search-form">
+    <form action="{% url 'boutique' %}" method="get" class="mobile-nav-search-form">
         <img class="sr-icon-mobile-nav" src="{% static 'search.png'%}" alt="">
         <input type="text" name="sr-input-ls-nav" id="sr-input-mobile-nav" placeholder="Rechercher">
         <button class="sr-btn-mobile-nav"><img src="{% static 'search.png'%}" alt=""></button>

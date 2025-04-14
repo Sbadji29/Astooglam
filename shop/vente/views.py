@@ -1,11 +1,13 @@
 from django.shortcuts import get_object_or_404, render
 from .models import *
+from django.urls import reverse
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from .forms import ConnexionForm
+from django.db.models import Q
 
 def accueil(request):
     categories = Categorie.objects.all()  
@@ -20,10 +22,20 @@ def apropos(request):
 
 
 def boutique(request):
-    produits = Produit.objects.all()  
-    categories = Categorie.objects.all()  
-    return render(request, 'vente/boutique.html', {'produits': produits, 'categories': categories})
+    query = request.GET.get('sr-input-ls-nav')  # Récupère le mot-clé saisi
+    if query:
+        produits = Produit.objects.filter(
+            Q(nom__icontains=query) | Q(description__icontains=query)
+        )
+    else:
+        produits = Produit.objects.all()
 
+    categories = Categorie.objects.all()
+    return render(request, 'vente/boutique.html', {
+        'produits': produits,
+        'categories': categories,
+        'query': query
+    })
 
 def categorie(request,category_id=None):
     produits = Produit.objects.all()  
@@ -58,9 +70,9 @@ def commande(request):
     ville = commande.get("ville", "")
     
     if ville == "Dakar":
-        frais_livraison = 2000  
+        frais_livraison = 0  
     elif ville == "Hors Dakar":
-        frais_livraison = 5000 
+        frais_livraison = 0 
 
     total = sous_total + frais_livraison
 
@@ -78,25 +90,68 @@ def commande(request):
 
 def enregistrer_commande(request):
     if request.method == "POST":
+        if "panier" not in request.session or not request.session["panier"]:
+            messages.error(request, "Votre panier est vide !")
+            return redirect("commande")
+
         prenom = request.POST.get("prenom")
         nom = request.POST.get("nom")
         telephone = request.POST.get("telephone")
         ville = request.POST.get("ville")
         adresse = request.POST.get("adresse")
 
-        print("Commande enregistrée :", prenom, nom, telephone, ville, adresse)
+        panier = request.session["panier"]
+        sous_total = sum(item["prix"] * item["qte"] for item in panier)
+        frais_livraison = 2000 if ville == "Dakar" else 5000
+        total = sous_total + frais_livraison
 
-        request.session["commande"] = {
-            "prenom": prenom,
-            "nom": nom,
-            "telephone": telephone,
-            "ville": ville,
-            "adresse": adresse
-        }
+        commande = Commande.objects.create(
+            prenom=prenom,
+            nom=nom,
+            telephone=telephone,
+            ville=ville,
+            adresse=adresse,
+            date_commande=now(),
+            sous_total=sous_total,
+            frais_livraison=frais_livraison,
+            total=total
+        )
 
-        return redirect("detail_commande")  
-        
-    return render(request, "vente/commande.html")
+        for item in panier:
+            produit = get_object_or_404(Produit, id=item["produit_id"])
+            DetailCommande.objects.create(
+                commande=commande,
+                produit=produit,
+                quantite=item["qte"],
+                prix=item["prix"]
+            )
+
+        del request.session["panier"]
+        request.session.modified = True
+
+        admin_email = "sadiabadji9@gmail.com"
+        sujet = "Nouvelle commande reçue"
+        lien_commande = request.build_absolute_uri(reverse("admin:vente_commande_change", args=[commande.id]))
+        message = f"Une nouvelle commande a été passée par {prenom} {nom}.\n\n"
+        message += f"📍 Ville : {ville}\n"
+        message += f"📍 Adresse : {adresse}\n"
+        message += f"📞 Téléphone : {telephone}\n"
+        message += f"💰 Total : {total} Fcfa\n\n"
+        message += f"Voir la commande dans l'admin : {lien_commande}"
+
+        send_mail(
+            sujet,
+            message,
+            "sadiabadji9@gmail.com",
+            [admin_email],
+            fail_silently=False,
+        )
+
+        messages.success(request, "Commande enregistrée avec succès !")
+        return redirect("succee")
+
+    return redirect("commande")
+
 def condition_utilisation(request):
     return render(request,'vente/condition_utilisation.html')
 
@@ -143,43 +198,26 @@ def contact(request):
 
 
 def detail_commande(request):
-    if "panier" not in request.session:
-        request.session["panier"] = []
-
-    panier = request.session["panier"]
-    produits = []
-    sous_total = 0
-    total=0
-    frais_livraison=0
-
-    for item in panier:
-        sous_total += item["prix"] * item["qte"]
-        produit = get_object_or_404(Produit, id=item["produit_id"])
-        produits.append({
-            "nom": item["nom"],
-            "qte": item["qte"],
-            "prix": item["prix"],
-            "categorie": produit.categorie.nom
-        })
-
-    commande = request.session.get("commande", {})
-    ville = commande.get("ville", "")
-    if ville == "Dakar":
-        frais_livraison = 2000  
-    elif ville == "Hors Dakar":
-        frais_livraison = 5000 
-    total = sous_total + frais_livraison
+    commande = Commande.objects.latest("date_commande")  
+    details = DetailCommande.objects.filter(commande=commande)
 
     context = {
-        'panier': produits,
-        'sous_total': sous_total,
-        'commande': commande,
-        'frais_livraison': frais_livraison,
-        'total': total,
+        "commande": commande,
+        "details": details,
     }
 
-    return render(request, 'vente/detail_commande.html', context)
+    return render(request, "vente/detail_commande.html", context)
 
+def sous_total(request):
+    if "panier" not in request.session:
+        request.session["panier"]=[]
+    panier=request.session["panier"]
+    total=0
+    for item in panier:
+        total+=item["prix"]*item["qte"]
+    context={'panier':panier,'total':total}
+
+    return render(request, "vente/sous_total.html", context)
 
 
 def detail_produit(request, produit_id):  
