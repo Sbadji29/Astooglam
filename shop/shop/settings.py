@@ -136,4 +136,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'sadiabadji9@gmail.com'  
 EMAIL_HOST_PASSWORD = 'dtpw qftu kiwg xlam'  
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
 SITE_ID = 1
